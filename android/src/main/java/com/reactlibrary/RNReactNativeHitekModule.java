@@ -26,25 +26,6 @@ public class RNReactNativeHitekModule extends ReactContextBaseJavaModule {
       Log.d("Dang ne", "May ra string ko " + number);
     }
 
-    @ReactMethod
-    public void getIP(Promise promise){
-        try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
-                 en.hasMoreElements();) {
-                NetworkInterface intf = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
-                    InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress()) {
-                        promise.resolve(inetAddress.getHostAddress());
-                    }
-                }
-            }
-
-        } catch (Exception ex) {
-            promise.reject("Error", ex);
-        }
-    }
-
   @Override
   public String getName() {
     return "RNReactNativeHitek";
